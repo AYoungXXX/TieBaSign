@@ -210,7 +210,8 @@ def send_email(sign_list):
     smtp.login(FROM, AUTH)
     smtp.sendmail(FROM, TO, msg.as_string())
     smtp.quit()
-
+def sendDingTalk(msg):
+    r = requests.post("https://oapi.dingtalk.com/robot/send?access_token=0e04c0410439dda2a70360169663e041f7e74eebdc75776c2837d6a8a4dc428c",json= {"msgtype": "text", "text": {"content": f'提醒:{msg}'}})
 def main():
     if ('BDUSS' not in ENV):
         logger.error("未配置BDUSS")
@@ -224,6 +225,7 @@ def main():
             time.sleep(random.randint(1,5))
             client_sign(i, tbs, j["id"], j["name"])
         logger.info("完成第" + str(n) + "个用户签到")
+     sendDingTalk(favorites)
   #  send_email(favorites)
   #  取消发送签到通知邮件
     logger.info("所有用户签到结束")
