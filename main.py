@@ -234,7 +234,5 @@ def main():
   #  send_email(favorites)
   #  取消发送签到通知邮件
     logger.info("所有用户签到结束")
-
-
 if __name__ == '__main__':
     main()
